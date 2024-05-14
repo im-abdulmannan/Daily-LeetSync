@@ -3,18 +3,16 @@ public:
     vector<int> deckRevealedIncreasing(vector<int>& deck) {
         sort(deck.begin(), deck.end());
         queue<int> q;
-        int n = deck.size();
 
-        for(int i = 0; i < n; i++) {
+        for(int i = 0; i < deck.size(); i++) {
             q.push(i);
         }
 
-        vector<int> result(n, 0);
-        int i = 0;
-
+        vector<int> res(deck.size(), 0);
+        int idx = 0;
         while(!q.empty()) {
             int k = q.front();
-            result[k] = deck[i];
+            res[k] = deck[idx];
             q.pop();
 
             if(!q.empty()) {
@@ -22,9 +20,9 @@ public:
                 q.push(x);
                 q.pop();
             }
-            i++;
+            idx++;
         }
 
-        return result;
+        return res;
     }
 };
