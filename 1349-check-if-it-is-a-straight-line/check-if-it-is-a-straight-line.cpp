@@ -17,7 +17,9 @@ public:
             int x = coordinates[i][0];
             int y = coordinates[i][1];
 
-            if(deltaX * (y - y1) != deltaY * (x - x1)) return false;
+            if(deltaX * (y - y1) != deltaY * (x - x1)) {
+                return false;
+            }
         }
 
         return true;
