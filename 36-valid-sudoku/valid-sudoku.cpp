@@ -3,22 +3,27 @@ public:
     bool isValidSudoku(vector<vector<char>>& board) {
         unordered_set<string> seen;
 
-        for(int i = 0; i < 9; i++) {
-            for (int j = 0; j < 9; j++) {
-                char curr = board[i][j];
-                if(curr != '.') {
-                    string row = "row" + to_string(i) + " " + curr;
-                    string col = "col" + to_string(j) + " " + curr;
-                    string box = "box" + to_string(i / 3) + "-" + to_string(j / 3) + " " + curr;
+        for(int r = 0; r < board.size(); r++) {
+            for(int c = 0; c < board[0].size(); c++) {
+                char cell = board[r][c];
 
-                    if(seen.count(row) || seen.count(col) || seen.count(box)) return false;
+                if(cell == '.') continue;
 
-                    seen.insert(row);
-                    seen.insert(col);
-                    seen.insert(box);
-                }
+                string row = "row" + to_string(r) + " " + cell;
+                string col = "col" + to_string(c) + " " + cell;
+                string box = "box" + to_string(r / 3) + "-" + to_string(c / 3) + " " + cell;
+
+                if(seen.count(row) || seen.count(col) || seen.count(box)) return false;
+
+                seen.insert(row);
+                seen.insert(col);
+                seen.insert(box);
             }
         }
+
+        // for(auto see : seen) {
+        //     cout << see << endl;
+        // }
 
         return true;
     }
