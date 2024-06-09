@@ -1,17 +1,16 @@
 class Solution {
 public:
     bool isPalindrome(string s) {
-        int left = 0, right = s.length() - 1;
+        int l = 0, r = s.length() - 1;
 
-        while(left < right) {
-            while(left < right && !isalnum(s[left])) left++;
-            while(left < right && !isalnum(s[right])) right--;
+        while(l < r) {
+            while(!isalnum(s[l]) && l < r) l++;
+            while(!isalnum(s[r]) && l < r) r--;
 
-            if(tolower(s[left]) != tolower(s[right])) {
-                return false;
-            }
+            // cout << s[l] << " : " << s[r] << endl;
 
-            left++, right--;
+            if(tolower(s[l]) != tolower(s[r])) return false;
+            l++, r--;
         }
 
         return true;
