@@ -11,20 +11,20 @@
  */
 class Solution {
 public:
-    int helper(TreeNode* curr, int& res) {
-        if(!curr) return 0;
+    int dfs(TreeNode* node, int& count) {
+        if(!node) return 0;
+        
+        int left = dfs(node->left, count);
+        int right = dfs(node->right, count);
 
-        int left = helper(curr->left, res);
-        int right = helper(curr->right, res);
-
-        res = max(res, left + right);
+        count = max(count, left + right);
 
         return max(left, right) + 1;
     }
 
     int diameterOfBinaryTree(TreeNode* root) {
-        int res = 0;
-        helper(root, res);
-        return res;
+        int count = 0;
+        dfs(root, count);
+        return count;
     }
 };
