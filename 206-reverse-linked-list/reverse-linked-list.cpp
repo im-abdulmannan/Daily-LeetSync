@@ -14,21 +14,16 @@ public:
         if(!head || !head->next) return head;
         ListNode* p = nullptr;
         ListNode* q = head->next;
-        
-        while(head != nullptr) {
+
+        while(head->next) {
             head->next = p;
             p = head;
-            head= q;
-            if(q != nullptr) q=q->next;
+            head = q;
+            q = head->next;
         }
+        head->next = p;
+        p = head;
 
         return p;
     }
 };
-
-/* 
- * q = 2;
- * head->next -> nullptr
- * p = 1;
- * head = 2;
- */
