@@ -1,20 +1,23 @@
 class Solution {
 public:
-    int getLucky(string s, int k) {
-        string ans = "";
+    int getLucky(string& s, int k) {
+        int num=0;
+        for (char c: s){
+            int x=c-'a'+1;
+            auto [q, r]=div(x, 10);
+            num+=q+r;
+        }
         
-        for(auto& i : s) {
-            ans += to_string(i - 'a' + 1);
-        }
-
-        while(k--) {
-            int sum = 0;
-            for(char c : ans) {
-                sum += c - '0';
+        if (k==1) return num;
+        k--;
+        for(int x=num; x>=10 && k>0; k--){
+            for(num=0; x>0; ){
+                auto [q, r]=div(x, 10);
+                num+=r;
+                x=q;
             }
-            ans = to_string(sum);
+            x=num;
         }
-
-        return stoi(ans);
+        return num;
     }
 };
