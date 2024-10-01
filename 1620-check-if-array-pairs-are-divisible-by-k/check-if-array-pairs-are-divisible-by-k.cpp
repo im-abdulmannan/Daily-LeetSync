@@ -1,6 +1,7 @@
 class Solution {
 public:
     bool canArrange(vector<int>& arr, int k) {
+        ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
         vector<int> freq(k, 0);
         for(auto num : arr) {
             int rem = num % k;
