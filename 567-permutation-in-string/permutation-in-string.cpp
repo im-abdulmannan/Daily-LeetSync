@@ -1,6 +1,7 @@
 class Solution {
 public:
     bool checkInclusion(string s1, string s2) {
+        ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
         if(s1.length() > s2.length()) return false;
 
         vector<int> s1Count(26, 0);
